@@ -2,8 +2,10 @@
 
 namespace HomeFinder.Models
 {
-    public class Query
+    public class QueryField
     {
+        [Key]
+        public int QueryId { get; set; }
         public string Geo_lat_from { get; set; } = string.Empty;
         public string Geo_lat_to { get; set; } = string.Empty;
         public string Geo_lng_from { get; set; } = string.Empty;

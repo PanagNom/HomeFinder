@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HomeFinder.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HomeFinder.Controllers
 {
@@ -10,5 +11,14 @@ namespace HomeFinder.Controllers
 
             return View();
         }
+
+        public IActionResult Search()
+        {
+            QueryField query = new() { };
+
+            return View(query);
+        }
+
+
     }
 }
