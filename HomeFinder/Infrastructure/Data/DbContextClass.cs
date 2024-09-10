@@ -1,4 +1,4 @@
-﻿using HomeFinder.Models;
+﻿using HomeFinder.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeFinder.Infrastructure.Data

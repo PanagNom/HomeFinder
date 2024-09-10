@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HomeFinder.Models
+namespace HomeFinder.Domain.Models
 {
     public class QueryField
     {

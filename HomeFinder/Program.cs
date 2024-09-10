@@ -1,3 +1,4 @@
+using HomeFinder.Infrastructure;
 using HomeFinder.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DbContextClass>(options => 
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddRepositories();
 
 var app = builder.Build();
 
