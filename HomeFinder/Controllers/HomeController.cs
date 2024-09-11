@@ -1,7 +1,9 @@
 ﻿using Domain.Interfaces;
 using HomeFinder.Domain.Interfaces;
 using HomeFinder.Domain.Models;
+using HomeFinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HomeFinder.Controllers
 {
@@ -24,9 +26,17 @@ namespace HomeFinder.Controllers
 
         public IActionResult Search()
         {
-            QueryField query = new() { };
+            var dataObject = new Data();
 
-            return View(query);
+            ViewData["Class"] = Enumerable.Range(0, dataObject.energy_class.Length-1)
+                                .Select(n => new SelectListItem {
+                                    Value = n.ToString(),
+                                    Text = dataObject.energy_class[n]
+                                }).ToList();
+
+            QuerySearchViewModel querySearchViewModel = new() { };
+            
+            return View(querySearchViewModel);
         }
 
         [HttpPost]
@@ -36,6 +46,7 @@ namespace HomeFinder.Controllers
             {
                 return BadRequest();
             }
+
             await _queryFieldRepository.AddQueryField(queryField);
             await _unitOfWork.saveChanges();
 
