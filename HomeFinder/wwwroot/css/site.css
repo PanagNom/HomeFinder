@@ -1,0 +1,7 @@
+﻿@charset "UTF-8";
+
+h1 {
+    color: darkblue;
+    background-color: yellow;
+    line-height: 1.2;
+}
