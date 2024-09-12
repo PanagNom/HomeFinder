@@ -27,6 +27,10 @@ namespace HomeFinder.Domain.Models
         public ushort MinBedrooms { get; set; }
         [Display(Name = "Maximum Bedrooms")]
         public ushort MaxBedrooms { get; set; }
+        [Display(Name = "Minimum Bathrooms")]
+        public ushort MinBathrooms { get; set; }
+        [Display(Name = "Maximum Bathrooms")]
+        public ushort MaxBathrooms { get; set; }
         [Display(Name = "Minimum Construction Year")]
         public ushort MinConstruction_year { get; set; }
         [Display(Name = "Maximum Construction Year")]

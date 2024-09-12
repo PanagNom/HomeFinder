@@ -26,14 +26,6 @@ namespace HomeFinder.Controllers
 
         public IActionResult Search()
         {
-            var dataObject = new Data();
-
-            ViewData["Class"] = Enumerable.Range(0, dataObject.energy_class.Length-1)
-                                .Select(n => new SelectListItem {
-                                    Value = n.ToString(),
-                                    Text = dataObject.energy_class[n]
-                                }).ToList();
-
             QuerySearchViewModel querySearchViewModel = new() { };
             
             return View(querySearchViewModel);
