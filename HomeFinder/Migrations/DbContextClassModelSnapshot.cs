@@ -2,8 +2,8 @@
 using HomeFinder.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -17,80 +17,86 @@ namespace HomeFinder.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.8")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("HomeFinder.Models.QueryField", b =>
+            modelBuilder.Entity("HomeFinder.Domain.Models.QueryField", b =>
                 {
                     b.Property<int>("QueryId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QueryId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("QueryId"));
 
-                    b.Property<string>("Availability")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string[]>("Availability")
+                        .HasColumnType("text[]");
 
                     b.Property<string>("Geo_lat_from")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Geo_lat_to")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Geo_lng_from")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Geo_lng_to")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
+
+                    b.Property<int>("MaxBathrooms")
+                        .HasColumnType("integer");
 
                     b.Property<int>("MaxBedrooms")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("MaxConstruction_year")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("MaxEnergyClass")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("MaxLevel")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("MaxPrice")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("MaxPricePerUnitArea")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("MaxSize")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MinBathrooms")
+                        .HasColumnType("integer");
 
                     b.Property<int>("MinBedrooms")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("MinConstruction_year")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<string>("MinEnergyClass")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("MinLevel")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("MinPrice")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("MinPricePerUnitArea")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("MinSize")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.HasKey("QueryId");
 
