@@ -1,4 +1,5 @@
 ﻿using HomeFinder.Domain.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO.Pipelines;
 
@@ -6,12 +7,12 @@ namespace HomeFinder.ViewModels
 {
     public class QuerySearchViewModel
     {
-        public List<SelectListItem>? Bedroom { get; set; }
-        public List<SelectListItem>? Bathroom { get; set; }
-        public List<SelectListItem>? Level { get; set; }
-        public List<SelectListItem>? EnergyClass { get; set; }
+        //public List<SelectListItem>? Bedroom { get; set; }
+        //public List<SelectListItem>? Bathroom { get; set; }
+        //public List<SelectListItem>? Level { get; set; }
+        //public List<SelectListItem>? EnergyClass { get; set; }
         public QueryField? QueryField { get; set; }
-
+        /*
         public QuerySearchViewModel()
         {
 
@@ -68,5 +69,6 @@ namespace HomeFinder.ViewModels
                 new SelectListItem { Value = "8ος+", Text = "L8" },
             };
         }
+        */
     }
 }
