@@ -1,4 +1,6 @@
 ﻿using HomeFinder.Domain.Models;
+using HtmlAgilityPack;
+using System;
 using System.Data.SqlTypes;
 using System.Text;
 
@@ -88,7 +90,56 @@ namespace HomeFinder.Domain.Services
 
             String FinalUrl = url.ToString();
 
+            PerformSearch(FinalUrl);
+
             return FinalUrl;
+        }
+
+        public IEnumerable<House> PerformSearch(string searchURL)
+        {
+            var houses = new List<House>();
+            HtmlDocument document = new();
+
+            DownloadPageData(ref document, searchURL);
+
+            foreach (var item in document.DocumentNode.SelectNodes("//div[contains(@class, 'common-ad-body grid-y align-justify')]"))
+            {
+                var linkNode = item.SelectSingleNode("./a/@href");
+                var url = linkNode.GetAttributeValue("href", string.Empty);
+
+                var price = item.SelectSingleNode(".//span[contains(@class, 'property-ad-price')]").InnerHtml;
+                var pricesqm = item.SelectSingleNode(".//span[contains(@class, 'property-ad-price-per-sqm')]").InnerHtml;
+                var level = item.SelectSingleNode("//span[contains(@class, 'property-ad-level')]").InnerHtml;
+                var address = item.SelectSingleNode("//span[contains(@class, 'common-property-ad-address')]").InnerHtml;
+
+                var child = item.ChildNodes[1];
+                var bedrooms = child.SelectSingleNode("//div[@class='common-property-ad-details grid-x']/div[@class='grid-x property-ad-bedrooms-container']/span").GetDirectInnerText();
+                var bathrooms = child.SelectSingleNode("//div[@class='common-property-ad-details grid-x']/div[@class='grid-x property-ad-bathrooms-container']/span").GetDirectInnerText();
+                var year = child.SelectSingleNode("//div[@class='common-property-ad-details grid-x']/div[@class='grid-x property-ad-construction-year-container']/span").GetDirectInnerText();
+
+                var house = new House(url, price, pricesqm, level, address, bedrooms, bathrooms, year);
+
+                houses.Add(house);
+            }
+
+            return houses;
+        }
+
+        public void DownloadPageData(ref HtmlDocument document, string url)
+        {
+            // creating the HAP object 
+            var web = new HtmlWeb();
+
+            // Create a web page loader class.
+            try
+            {
+                document = web.Load(url);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
         }
     }
 }
