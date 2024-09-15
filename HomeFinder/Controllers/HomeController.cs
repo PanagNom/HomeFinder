@@ -26,8 +26,9 @@ namespace HomeFinder.Controllers
 
         public IActionResult Search()
         {
-            QuerySearchViewModel querySearchViewModel = new() { };
-            
+            QuerySearchViewModel querySearchViewModel = new();
+            querySearchViewModel.QueryField = new QueryField();
+
             return View(querySearchViewModel);
         }
 
