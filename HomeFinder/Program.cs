@@ -1,3 +1,4 @@
+using HomeFinder.Domain.Services;
 using HomeFinder.Infrastructure;
 using HomeFinder.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DbContextClass>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSql")));
 
+builder.Services.AddTransient<ISearchServices, SearchServices>();
 builder.Services.AddRepositories();
 
 var app = builder.Build();

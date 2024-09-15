@@ -62,14 +62,14 @@ namespace HomeFinder.Domain.Models
         public ushort? MaxBathrooms { get; set; } = 0;
 
 
-        [Range(1900, 2024, ErrorMessage = "Year must be between 1900 and 2024")]
+        [Range(1899, 2024, ErrorMessage = "Year must be between 1900 and 2024")]
         [Display(Name = "Minimum Construction Year")]
-        public ushort? MinConstruction_year { get; set; } = 1900;
+        public ushort? MinConstruction_year { get; set; } = 1899;
 
 
-        [Range(1900, 2024, ErrorMessage = "Year must be between 1900 and 2024")]
+        [Range(1899, 2024, ErrorMessage = "Year must be between 1900 and 2024")]
         [Display(Name = "Maximum Construction Year")]
-        public ushort? MaxConstruction_year { get; set; } = 1900;
+        public ushort? MaxConstruction_year { get; set; } = 1899;
 
 
         [Range(0, 20000, ErrorMessage = "Total must be between 0 and 20000")]

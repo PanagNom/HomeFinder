@@ -1,6 +1,7 @@
 ﻿using Domain.Interfaces;
 using HomeFinder.Domain.Interfaces;
 using HomeFinder.Domain.Models;
+using HomeFinder.Domain.Services;
 using HomeFinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,10 +12,13 @@ namespace HomeFinder.Controllers
     {
         private readonly IQueryFieldRepository _queryFieldRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public HomeController(IQueryFieldRepository queryFieldRepository, IUnitOfWork unitOfWork)
+        private readonly ISearchServices _searchServices;
+        public HomeController(IQueryFieldRepository queryFieldRepository, 
+            IUnitOfWork unitOfWork, ISearchServices searchServices)
         {
             _queryFieldRepository = queryFieldRepository;
             _unitOfWork = unitOfWork;
+            _searchServices = searchServices;
         }
 
         public IActionResult Index()
@@ -41,9 +45,10 @@ namespace HomeFinder.Controllers
             }
 
             await _queryFieldRepository.AddQueryField(queryField);
-            await _unitOfWork.saveChanges();
 
-            QueryField query = new() { };
+            string search_URL = _searchServices.CreateSearchURL(queryField);
+
+            //await _unitOfWork.saveChanges();
 
             return CreatedAtAction(nameof(Search), queryField);
         }
