@@ -8,7 +8,6 @@ namespace HomeFinder.Domain.Models
         [Key]
         public int QueryId { get; set; }
 
-
         public string? Geo_lat_from { get; set; } = string.Empty;
 
         public string? Geo_lat_to { get; set; } = string.Empty;

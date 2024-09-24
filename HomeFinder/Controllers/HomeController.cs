@@ -5,6 +5,7 @@ using HomeFinder.Domain.Services;
 using HomeFinder.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace HomeFinder.Controllers
 {
@@ -30,27 +31,16 @@ namespace HomeFinder.Controllers
 
         public IActionResult Search()
         {
-            QuerySearchViewModel querySearchViewModel = new();
-            querySearchViewModel.QueryField = new QueryField();
-
-            return View(querySearchViewModel);
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Search(QueryField queryField)
+        public IActionResult Search(QuerySearchViewModel querySearchViewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+            string search_URL = _searchServices.CreateSearchURL(querySearchViewModel.QueryField);
+            querySearchViewModel.Houses = _searchServices.PerformSearch(search_URL);
 
-            await _queryFieldRepository.AddQueryField(queryField);
-
-            string search_URL = _searchServices.CreateSearchURL(queryField);
-
-            //await _unitOfWork.saveChanges();
-
-            return CreatedAtAction(nameof(Search), queryField);
+            return View(querySearchViewModel);
         }
     }
 }

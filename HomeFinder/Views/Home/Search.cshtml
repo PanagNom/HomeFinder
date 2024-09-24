@@ -1,77 +1,97 @@
 ﻿@model QuerySearchViewModel
 
-<form method="post" asp-controller="Home" asp-action="Search">
-    <div>
-        <label asp-for="QueryField.MinPrice" class="form-label"></label>
-        <input asp-for="QueryField.MinPrice" class="form-control" />
-    </div>
-    <div>
-        <label asp-for="QueryField.MaxPrice" class="form-label"></label>
-        <input asp-for="QueryField.MaxPrice" class="form-control" />
-    </div>
-    <div>
-        <label asp-for="QueryField.MinSize" class="form-label"></label>
-        <input asp-for="QueryField.MinSize" class="form-control" />
-    </div>
-    <div>
-        <label asp-for="QueryField.MaxSize" class="form-label"></label>
-        <input asp-for="QueryField.MaxSize" class="form-control" />
-    </div>
-    <div>
-        <label asp-for="QueryField.MinConstruction_year" class="form-label"></label>
-        <input asp-for="QueryField.MinConstruction_year" class="form-control" />
-    </div>
-    <div>
-        <label asp-for="QueryField.MaxConstruction_year" class="form-label"></label>
-        <input asp-for="QueryField.MaxConstruction_year" class="form-control" />
-    </div>
-    <div>
-        <label asp-for="QueryField.MinPricePerUnitArea" class="form-label"></label>
-        <input asp-for="QueryField.MinPricePerUnitArea" class="form-control" />
-    </div>
-    <div>
-        <label asp-for="QueryField.MaxPricePerUnitArea" class="form-label"></label>
-        <input asp-for="QueryField.MaxPricePerUnitArea" class="form-control" />
-    </div>
-    <div>
-        <label asp-for="QueryField.MinLevel" class="form-label"></label>
-        <select asp-for="QueryField.MinLevel" asp-items="Data.Level">
-        </select>
-    </div>
-    <div>
-        <label asp-for="QueryField.MaxLevel" class="form-label"></label>
-        <select asp-for="QueryField.MaxLevel" asp-items="Data.Level">
-        </select>
-    </div>
-    <div>
-        <label asp-for="QueryField.MinBedrooms" class="form-label"></label>
-        <select asp-for="QueryField.MinBedrooms" asp-items="Data.Bedroom">
-        </select>
-    </div>
-    <div>
-        <label asp-for="QueryField.MaxBedrooms" class="form-label"></label>
-        <select asp-for="QueryField.MaxBedrooms" asp-items="Data.Bedroom">
-        </select>
-    </div>
-    <div>
-        <label asp-for="QueryField.MinBathrooms" class="form-label"></label>
-        <select asp-for="QueryField.MinBathrooms" asp-items="Data.Bathroom">
-        </select>
-    </div>
-    <div>
-        <label asp-for="QueryField.MaxBathrooms" class="form-label"></label>
-        <select asp-for="QueryField.MaxBathrooms" asp-items="Data.Bathroom">
-        </select>
-    </div>
-    <div>
-        <label asp-for="QueryField.MinEnergyClass" class="form-label"></label>
-        <select asp-for="QueryField.MinEnergyClass" asp-items="Data.EnergyClass">
-        </select>
-    </div>
-    <div>
-        <label asp-for="QueryField.MaxEnergyClass" class="form-label"></label>
-        <select asp-for="QueryField.MaxEnergyClass" asp-items="Data.EnergyClass">
-        </select>
-    </div>
-    <input type="submit" value="Search" class="btn btn-primary" />
-</form>
+@if(Model!=null)
+{
+    if (Model.Houses != null)
+    {
+        <div>
+            <ul>
+                @foreach (var house in Model.Houses)
+                {
+                    <li>@house.Address</li>
+                    <li>@house.Price</li>
+                    <li>@house.Level</li>
+                    <li>@house.Url</li>
+                }
+            </ul>
+        </div>
+    }
+}
+else
+{
+    <form method="post" asp-controller="Home" asp-action="Search">
+        <div>
+            <label asp-for="QueryField.MinPrice" class="form-label"></label>
+            <input asp-for="QueryField.MinPrice" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="QueryField.MaxPrice" class="form-label"></label>
+            <input asp-for="QueryField.MaxPrice" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="QueryField.MinSize" class="form-label"></label>
+            <input asp-for="QueryField.MinSize" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="QueryField.MaxSize" class="form-label"></label>
+            <input asp-for="QueryField.MaxSize" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="QueryField.MinConstruction_year" class="form-label"></label>
+            <input asp-for="QueryField.MinConstruction_year" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="QueryField.MaxConstruction_year" class="form-label"></label>
+            <input asp-for="QueryField.MaxConstruction_year" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="QueryField.MinPricePerUnitArea" class="form-label"></label>
+            <input asp-for="QueryField.MinPricePerUnitArea" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="QueryField.MaxPricePerUnitArea" class="form-label"></label>
+            <input asp-for="QueryField.MaxPricePerUnitArea" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="QueryField.MinLevel" class="form-label"></label>
+            <select asp-for="QueryField.MinLevel" asp-items="Data.Level">
+            </select>
+        </div>
+        <div>
+            <label asp-for="QueryField.MaxLevel" class="form-label"></label>
+            <select asp-for="QueryField.MaxLevel" asp-items="Data.Level">
+            </select>
+        </div>
+        <div>
+            <label asp-for="QueryField.MinBedrooms" class="form-label"></label>
+            <select asp-for="QueryField.MinBedrooms" asp-items="Data.Bedroom">
+            </select>
+        </div>
+        <div>
+            <label asp-for="QueryField.MaxBedrooms" class="form-label"></label>
+            <select asp-for="QueryField.MaxBedrooms" asp-items="Data.Bedroom">
+            </select>
+        </div>
+        <div>
+            <label asp-for="QueryField.MinBathrooms" class="form-label"></label>
+            <select asp-for="QueryField.MinBathrooms" asp-items="Data.Bathroom">
+            </select>
+        </div>
+        <div>
+            <label asp-for="QueryField.MaxBathrooms" class="form-label"></label>
+            <select asp-for="QueryField.MaxBathrooms" asp-items="Data.Bathroom">
+            </select>
+        </div>
+        <div>
+            <label asp-for="QueryField.MinEnergyClass" class="form-label"></label>
+            <select asp-for="QueryField.MinEnergyClass" asp-items="Data.EnergyClass">
+            </select>
+        </div>
+        <div>
+            <label asp-for="QueryField.MaxEnergyClass" class="form-label"></label>
+            <select asp-for="QueryField.MaxEnergyClass" asp-items="Data.EnergyClass">
+            </select>
+        </div>
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </form>
+}

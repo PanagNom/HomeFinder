@@ -90,8 +90,6 @@ namespace HomeFinder.Domain.Services
 
             String FinalUrl = url.ToString();
 
-            PerformSearch(FinalUrl);
-
             return FinalUrl;
         }
 
