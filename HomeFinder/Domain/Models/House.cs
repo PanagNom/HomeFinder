@@ -10,9 +10,11 @@
         public ushort Bedrooms { get; set; }
         public ushort Bathrooms { get; set; }
         public ushort ConstructionYear { get; set; }
+        public string ImageUrl { get; set; }
 
         public House(string url, string price, string pricePerSqr, string level, string address, string bedrooms, string bathrooms, string constructionYear)
         {
+            ImageUrl = "https://a2.xe.gr/20240921/171236_375684_1000_750.webp";
             Url = url.Trim(); 
             Address = address.Trim();
             

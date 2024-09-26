@@ -2,6 +2,8 @@
 using HtmlAgilityPack;
 using System;
 using System.Data.SqlTypes;
+using System.Net;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace HomeFinder.Domain.Services
@@ -92,16 +94,24 @@ namespace HomeFinder.Domain.Services
 
             return FinalUrl;
         }
-
         public IEnumerable<House> PerformSearch(string searchURL)
         {
             var houses = new List<House>();
+            var house = new House("https://www.youtube.com/?app", "450€", "2€", "2οs", "Kamares", "#;3", "#;1", "#;1700");
+
+            houses.Add(house);
+            house = new House("https://gg.deals/", "300€", "6€", "3ο", "Aigio", "#;1", "#;4", "#;1800");
+
+            houses.Add(house);
+            return houses;
+            /*
             HtmlDocument document = new();
 
             DownloadPageData(ref document, searchURL);
 
             foreach (var item in document.DocumentNode.SelectNodes("//div[contains(@class, 'common-ad-body grid-y align-justify')]"))
             {
+                var ancestors = item.Ancestors();
                 var linkNode = item.SelectSingleNode("./a/@href");
                 var url = linkNode.GetAttributeValue("href", string.Empty);
 
@@ -115,14 +125,14 @@ namespace HomeFinder.Domain.Services
                 var bathrooms = child.SelectSingleNode("//div[@class='common-property-ad-details grid-x']/div[@class='grid-x property-ad-bathrooms-container']/span").GetDirectInnerText();
                 var year = child.SelectSingleNode("//div[@class='common-property-ad-details grid-x']/div[@class='grid-x property-ad-construction-year-container']/span").GetDirectInnerText();
 
-                var house = new House(url, price, pricesqm, level, address, bedrooms, bathrooms, year);
+                var home = new House(url, price, pricesqm, level, address, bedrooms, bathrooms, year);
 
-                houses.Add(house);
+                houses.Add(home);
             }
 
             return houses;
+            */
         }
-
         public void DownloadPageData(ref HtmlDocument document, string url)
         {
             // creating the HAP object 

@@ -31,12 +31,16 @@ namespace HomeFinder.Controllers
 
         public IActionResult Search()
         {
+            ViewBag.Title = "Search";
+
             return View();
         }
 
         [HttpPost]
         public IActionResult Search(QuerySearchViewModel querySearchViewModel)
         {
+            ViewBag.Title = "Search";
+
             string search_URL = _searchServices.CreateSearchURL(querySearchViewModel.QueryField);
             querySearchViewModel.Houses = _searchServices.PerformSearch(search_URL);
 
