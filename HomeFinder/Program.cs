@@ -1,4 +1,5 @@
 using HomeFinder.Domain.Services;
+using HomeFinder.Extensions;
 using HomeFinder.Infrastructure;
 using HomeFinder.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<DbContextClass>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSql")));
+builder.Services.AddDbContext<DbContextClass>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlDocker")));
 
 builder.Services.AddTransient<ISearchServices, SearchServices>();
 builder.Services.AddRepositories();
@@ -23,6 +24,7 @@ if(!app.Environment.IsDevelopment())
 else
 {
     app.UseDeveloperExceptionPage();
+    app.ApplyMigration();
 }
 
 app.UseHttpsRedirection();
