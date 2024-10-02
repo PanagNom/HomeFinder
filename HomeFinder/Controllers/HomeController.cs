@@ -1,50 +1,33 @@
-﻿using Domain.Interfaces;
-using HomeFinder.Domain.Interfaces;
+﻿using HomeFinder.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using HomeFinder.Domain.Services;
+using HomeFinder.Domain.Models;
+using Domain.Interfaces;
 using HomeFinder.Domain.Models;
 using HomeFinder.Domain.Services;
-using HomeFinder.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace HomeFinder.Controllers
 {
-    public class HomeController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class HomeController : ControllerBase
     {
-        private readonly IQueryFieldRepository _queryFieldRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISearchServices _searchServices;
-        public HomeController(IQueryFieldRepository queryFieldRepository, 
-            IUnitOfWork unitOfWork, ISearchServices searchServices)
+
+        public HomeController(ISearchServices searchServices, IUnitOfWork unitOfWork)
         {
-            _queryFieldRepository = queryFieldRepository;
-            _unitOfWork = unitOfWork;
             _searchServices = searchServices;
-        }
-
-        public IActionResult Index()
-        {
-            ViewBag.Title = "Home";
-
-            return View();
-        }
-
-        public IActionResult Search()
-        {
-            ViewBag.Title = "Search";
-
-            return View();
+            _unitOfWork = unitOfWork;
         }
 
         [HttpPost]
-        public IActionResult Search(QuerySearchViewModel querySearchViewModel)
+        public ActionResult<IEnumerable<House>> Search(QueryField queryField)
         {
-            ViewBag.Title = "Search";
+            string search_URL = _searchServices.CreateSearchURL(queryField);
+            IEnumerable<House> houses = _searchServices.PerformSearch(search_URL);
 
-            string search_URL = _searchServices.CreateSearchURL(querySearchViewModel.QueryField);
-            querySearchViewModel.Houses = _searchServices.PerformSearch(search_URL);
-
-            return View(querySearchViewModel);
+            return Ok(houses);
         }
     }
 }

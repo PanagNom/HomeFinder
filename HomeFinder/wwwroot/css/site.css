@@ -1,150 +1,50 @@
-﻿.card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 20%;
-    border-radius: 5px; /* 5px rounded corners */
+﻿/* Grid layout for the form */
+form {
+    display: grid;
+    grid-HomeFinderlate-columns: repeat(2, 1fr); /* Two equal-width columns */
+    grid-gap: 20px; /* Space between rows and columns */
 }
 
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+/* Remove flexbox from .form-row */
+.form-row {
+    margin-bottom: 15px;
 }
 
-img {
-    border-radius: 5px 5px 0 0;
-}
-
-.container {
-    padding: 2px 16px;
-}
-
-body {
-    margin: 0;
-    font-size: 28px;
-    font-family: Arial, Arial, Helvetica, sans-serif;
-}
-
-.header {
-    background-color: #f1f1f1;
-    padding: 30px;
-    text-align: center;
-}
-
-#navbar {
-    position: sticky;
-    top: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-#navbar a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-    #navbar a:hover {
-        background-color: #ddd;
-        color: black;
-    }
-
-    #navbar a.active {
-        background-color: #04AA6D;
-        color: white;
-    }
-
-.content {
-    padding: 16px;
-}
-
-/*                                  */
-
-.row {
-    display: -ms-flexbox; /* IE10 */
-    display: flex;
-    -ms-flex-wrap: wrap; /* IE10 */
-    flex-wrap: wrap;
-    margin: 0 -16px;
-}
-
-.col-25 {
-    -ms-flex: 25%; /* IE10 */
-    flex: 25%;
-}
-
-.col-50 {
-    -ms-flex: 50%; /* IE10 */
-    flex: 50%;
-}
-
-.col-75 {
-    -ms-flex: 75%; /* IE10 */
-    flex: 75%;
-}
-
-.col-25,
-.col-50,
-.col-75 {
-    padding: 0 16px;
-}
-
-.container {
-    background-color: #f2f2f2;
-    padding: 5px 20px 15px 20px;
-    border: 1px solid lightgrey;
-    border-radius: 3px;
-}
-
-input[type=text] {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
+/* Style for labels and inputs */
 label {
-    margin-bottom: 10px;
+    font-weight: bold;
+    margin-bottom: 5px;
     display: block;
 }
 
-.icon-container {
-    margin-bottom: 20px;
-    padding: 7px 0;
-    font-size: 24px;
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%; /* Make inputs take up the full width */
 }
 
-.btn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 12px;
-    margin: 10px 0;
+input[type="submit"] {
+    background-color: purple;
+    width: 180px;
+    display: block;
+    margin: 0px auto;
     border: none;
-    width: 100%;
-    border-radius: 3px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: "Courier New", Courier, monospace;
+    color: white;
+    margin-top: 30px;
+    padding: 20px;
+    text-align: center;
     cursor: pointer;
-    font-size: 17px;
 }
 
-    .btn:hover {
-        background-color: #45a049;
-    }
-
-span.price {
-    float: right;
-    color: grey;
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
-@media (max-width: 800px) {
-    .row {
-        flex-direction: column-reverse;
-    }
-
-    .col-25 {
-        margin-bottom: 20px;
-    }
+input[type="submit"]:hover {
+    background-color: indigo;
 }

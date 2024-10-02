@@ -85,10 +85,6 @@ namespace HomeFinder.Domain.Services
             {
                 url.Append(string.Format("&building_availability_options={0}", queryField.Availability[0]));
             }
-            if (queryField.Availability[1] != "")
-            {
-                url.Append(string.Format("&building_availability_options={0}", queryField.Availability[1]));
-            }
 
             String FinalUrl = url.ToString();
 

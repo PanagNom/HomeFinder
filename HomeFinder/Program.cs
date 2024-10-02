@@ -1,39 +1,35 @@
 using HomeFinder.Domain.Services;
-using HomeFinder.Extensions;
-using HomeFinder.Infrastructure;
-using HomeFinder.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using HomeFinder.Infrastructure.Data;
+using HomeFinder.Infrastructure;
+using HomeFinder.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
-
+// Add services to the container.
 builder.Services.AddDbContext<DbContextClass>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSqlDocker")));
-
 builder.Services.AddTransient<ISearchServices, SearchServices>();
+builder.Services.AddControllers();
 builder.Services.AddRepositories();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if(!app.Environment.IsDevelopment())
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-else
-{
-    app.UseDeveloperExceptionPage();
     app.ApplyMigration();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
 
-app.UseRouting();
+app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllers();
 
 app.Run();

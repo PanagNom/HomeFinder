@@ -1,0 +1,21 @@
+services:
+  homefinder:
+    image: ${DOCKER_REGISTRY-}homefinder
+    container_name: homefinder
+    build:
+      context: .
+      dockerfile: HomeFinder/Dockerfile
+    ports:
+        - "5000:5000"
+        - "5001:5001"
+  database:
+    image: postgres:latest
+    container_name: database
+    environment:
+        - POSTGRES_DB=pnomikos
+        - POSTGRES_USER=pnomikos
+        - POSTGRES_PASSWORD=Cloutavaes1.
+    volumes:
+        - ./.containers/database:/var/lib/postgresql/data
+    ports:
+        - 5432:5432

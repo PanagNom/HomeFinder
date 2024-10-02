@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿/*
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HomeFinder.Domain.Models
 {
@@ -57,7 +58,7 @@ namespace HomeFinder.Domain.Models
                 new SelectListItem { Value = Data.energy_class[8], Text = "Class " + Data.energy_class[8] },
                 new SelectListItem { Value = Data.energy_class[9], Text = "Class " + Data.energy_class[9] }
             };
-        /*
+        
         
        
 
@@ -93,6 +94,7 @@ namespace HomeFinder.Domain.Models
         string[] realtors = new string[] { "&realtors%5B%5D=Micasa&realtors%5B%5D=Roi+Mat+Real+Estate", "&realtors%5B%5D=Palmos+Properties", "&realtors%5B%5D=One+Real+Estate&realtors%5B%5D=VIProperty", "&realtors%5B%5D=%CE%9F%CE%B9%CE%BA%CE%BF%CF%83%CF%84%CE%AD%CE%B3%CE%B7",
                                             "&realtors%5B%5D=Golden+Home&realtors%5B%5D=Planet+Homes", "&realtors%5B%5D=Metroland+Real+Estate+Management" };
     
-        */
+        
     }
 }
+*/

@@ -39,7 +39,7 @@
 // Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
 // throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
 // arguments.callee.caller (trac-13335). But as of jQuery 3.0 (2016), strict mode should be common
-// enough that all such attempts are guarded in a try block.
+// enough that all such atHomeFinderts are guarded in a try block.
 "use strict";
 
 var arr = [];
@@ -1325,7 +1325,7 @@ function setDocument( node ) {
 
 		// Support: IE 11+, Edge 15 - 18+
 		// IE 11/Edge don't find elements on a `[name='']` query in some cases.
-		// Adding a temporary attribute to the document before the selection works
+		// Adding a HomeFinderorary attribute to the document before the selection works
 		// around the issue.
 		// Interestingly, IE 10 & older don't seem to have the issue.
 		input = document.createElement( "input" );
@@ -2280,7 +2280,7 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 		postFinder = setMatcher( postFinder, postSelector );
 	}
 	return markFunction( function( seed, results, context, xml ) {
-		var temp, i, elem, matcherOut,
+		var HomeFinder, i, elem, matcherOut,
 			preMap = [],
 			postMap = [],
 			preexisting = results.length,
@@ -2315,13 +2315,13 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 
 		// Apply postFilter
 		if ( postFilter ) {
-			temp = condense( matcherOut, postMap );
-			postFilter( temp, [], context, xml );
+			HomeFinder = condense( matcherOut, postMap );
+			postFilter( HomeFinder, [], context, xml );
 
 			// Un-match failing elements by moving them back to matcherIn
-			i = temp.length;
+			i = HomeFinder.length;
 			while ( i-- ) {
-				if ( ( elem = temp[ i ] ) ) {
+				if ( ( elem = HomeFinder[ i ] ) ) {
 					matcherOut[ postMap[ i ] ] = !( matcherIn[ postMap[ i ] ] = elem );
 				}
 			}
@@ -2332,25 +2332,25 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 				if ( postFinder ) {
 
 					// Get the final matcherOut by condensing this intermediate into postFinder contexts
-					temp = [];
+					HomeFinder = [];
 					i = matcherOut.length;
 					while ( i-- ) {
 						if ( ( elem = matcherOut[ i ] ) ) {
 
 							// Restore matcherIn since elem is not yet a final match
-							temp.push( ( matcherIn[ i ] = elem ) );
+							HomeFinder.push( ( matcherIn[ i ] = elem ) );
 						}
 					}
-					postFinder( null, ( matcherOut = [] ), temp, xml );
+					postFinder( null, ( matcherOut = [] ), HomeFinder, xml );
 				}
 
 				// Move matched elements from seed to results to keep them synchronized
 				i = matcherOut.length;
 				while ( i-- ) {
 					if ( ( elem = matcherOut[ i ] ) &&
-						( temp = postFinder ? indexOf.call( seed, elem ) : preMap[ i ] ) > -1 ) {
+						( HomeFinder = postFinder ? indexOf.call( seed, elem ) : preMap[ i ] ) > -1 ) {
 
-						seed[ temp ] = !( results[ temp ] = elem );
+						seed[ HomeFinder ] = !( results[ HomeFinder ] = elem );
 					}
 				}
 			}
@@ -3106,9 +3106,9 @@ jQuery.each( {
 		}
 
 		// Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
-		// Treat the template element as a regular one in browsers that
+		// Treat the HomeFinderlate element as a regular one in browsers that
 		// don't support it.
-		if ( nodeName( elem, "template" ) ) {
+		if ( nodeName( elem, "HomeFinderlate" ) ) {
 			elem = elem.content || elem;
 		}
 
@@ -3481,7 +3481,7 @@ jQuery.extend( {
 
 									// Support: Promises/A+ section 2.3.3.3.3
 									// https://promisesaplus.com/#point-59
-									// Ignore double-resolution attempts
+									// Ignore double-resolution atHomeFinderts
 									if ( depth < maxDepth ) {
 										return;
 									}
@@ -4254,17 +4254,17 @@ jQuery.fn.extend( {
 			// (and therefore has an element appears at this[ 0 ]) and the
 			// `value` parameter was not undefined. An empty jQuery object
 			// will result in `undefined` for elem = this[ 0 ] which will
-			// throw an exception if an attempt to read a data cache is made.
+			// throw an exception if an atHomeFindert to read a data cache is made.
 			if ( elem && value === undefined ) {
 
-				// Attempt to get data from the cache
+				// AtHomeFindert to get data from the cache
 				// The key will always be camelCased in Data
 				data = dataUser.get( elem, key );
 				if ( data !== undefined ) {
 					return data;
 				}
 
-				// Attempt to "discover" the data in
+				// AtHomeFindert to "discover" the data in
 				// HTML5 custom data-* attrs
 				data = dataAttr( elem, key );
 				if ( data !== undefined ) {
@@ -4542,7 +4542,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 var defaultDisplayMap = {};
 
 function getDefaultDisplay( elem ) {
-	var temp,
+	var HomeFinder,
 		doc = elem.ownerDocument,
 		nodeName = elem.nodeName,
 		display = defaultDisplayMap[ nodeName ];
@@ -4551,10 +4551,10 @@ function getDefaultDisplay( elem ) {
 		return display;
 	}
 
-	temp = doc.body.appendChild( doc.createElement( nodeName ) );
-	display = jQuery.css( temp, "display" );
+	HomeFinder = doc.body.appendChild( doc.createElement( nodeName ) );
+	display = jQuery.css( HomeFinder, "display" );
 
-	temp.parentNode.removeChild( temp );
+	HomeFinder.parentNode.removeChild( HomeFinder );
 
 	if ( display === "none" ) {
 		display = "block";
@@ -7187,7 +7187,7 @@ jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( _i, name )
 
 		if ( !isXML ) {
 
-			// Avoid an infinite loop by temporarily removing this function from the getter
+			// Avoid an infinite loop by HomeFinderorarily removing this function from the getter
 			handle = attrHandle[ lowercaseName ];
 			attrHandle[ lowercaseName ] = ret;
 			ret = getter( elem, name, isXML ) != null ?

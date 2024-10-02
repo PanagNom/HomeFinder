@@ -1,8 +1,4 @@
 ﻿using HomeFinder.Domain.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-using System.IO.Pipelines;
 
 namespace HomeFinder.ViewModels
 {
