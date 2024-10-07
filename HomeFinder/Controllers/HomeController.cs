@@ -14,20 +14,35 @@ namespace HomeFinder.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ISearchServices _searchServices;
+        private readonly IHouseRepository _houseRepository;
 
-        public HomeController(ISearchServices searchServices, IUnitOfWork unitOfWork)
+        public HomeController(ISearchServices searchServices, IUnitOfWork unitOfWork, IHouseRepository houseRepository)
         {
             _searchServices = searchServices;
             _unitOfWork = unitOfWork;
+            _houseRepository = houseRepository;
         }
 
         [HttpPost]
-        public ActionResult<IEnumerable<House>> Search(QueryField queryField)
+        public async Task<IEnumerable<House>> Search(QueryField queryField)
         {
             string search_URL = _searchServices.CreateSearchURL(queryField);
             IEnumerable<House> houses = _searchServices.PerformSearch(search_URL);
+            foreach (House house in houses)
+            {
+                await _houseRepository.SaveHome(house);
+            }
+            await _unitOfWork.saveChanges();
 
-            return Ok(houses);
+            return houses;
+        }
+
+        [HttpGet]
+        public async Task<List<House>> GetListHomeAsync()
+        {
+            var homes = await _houseRepository.GetFavoritedHouses();
+
+            return homes;
         }
     }
 }

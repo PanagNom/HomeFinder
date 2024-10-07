@@ -9,6 +9,7 @@ namespace HomeFinder.Infrastructure.Data
         { }
 
         public DbSet<QueryField> QueryFields { get; set; }
+        public DbSet<House> Houses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -93,11 +93,11 @@ namespace HomeFinder.Domain.Services
         public IEnumerable<House> PerformSearch(string searchURL)
         {
             var houses = new List<House>();
-            var house = new House("https://www.youtube.com/?app", "450€", "2€", "2οs", "Kamares", "#;3", "#;1", "#;1700");
+            var house = new House(new Guid(),"https://www.youtube.com/?app", "450€", "2€", "2οs", "Kamares", "#;3", "#;1", "#;1700");
 
             houses.Add(house);
-            house = new House("https://gg.deals/", "300€", "6€", "3ο", "Aigio", "#;1", "#;4", "#;1800");
-
+            house = new House(new Guid(), "https://gg.deals/", "300€", "6€", "3ο", "Aigio", "#;1", "#;4", "#;1800");
+            house.IsFavorited = true;
             houses.Add(house);
             return houses;
             /*

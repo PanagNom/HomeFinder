@@ -10,6 +10,7 @@ namespace HomeFinder.Infrastructure
         {
             services
                 .AddScoped<IQueryFieldRepository, QueryFieldRepository>()
+                .AddScoped<IHouseRepository, HouseRepository>()
                 .AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
