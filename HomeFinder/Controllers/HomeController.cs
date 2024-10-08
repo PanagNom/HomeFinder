@@ -36,13 +36,34 @@ namespace HomeFinder.Controllers
 
             return houses;
         }
-
         [HttpGet]
         public async Task<List<House>> GetListHomeAsync()
         {
             var homes = await _houseRepository.GetFavoritedHouses();
 
             return homes;
+        }
+        [HttpGet]
+        public async Task SetHouseFavorite(House home)
+        {
+            var id = await _houseRepository.SetFavoriteHome(home);
+            
+            if (id == home.Id)
+            {
+                await _unitOfWork.saveChanges();
+            }
+            
+            return ;
+        }
+        [HttpGet]
+        public async Task UnsetHouseFavorite(Guid Id)
+        {
+            var id = await _houseRepository.UnsetFavoriteHome(Id);
+
+            if (id != null)
+            {
+                await _unitOfWork.saveChanges();
+            }
         }
     }
 }
